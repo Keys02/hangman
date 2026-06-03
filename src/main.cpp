@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Words.cpp"
+#include "WordGenerator.cpp"
 
 using namespace Hangman;
 
