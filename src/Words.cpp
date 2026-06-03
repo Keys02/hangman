@@ -1,0 +1,17 @@
+#include "Words.hpp"
+#include <ctime>
+#include <random>
+
+// 1. Seed the generator using the system's hardware entropy source
+std::random_device rd; 
+
+// 2. Initialize the engine with the seed
+std::mt19937 gen(rd()); 
+
+using namespace Hangman;
+
+std::string WordGenerator::generateWord() {
+    std::uniform_int_distribution<std::size_t> dist(0, WordGenerator::words.size() - 1);
+    std::size_t word_pos = dist(gen);
+    return WordGenerator::words[word_pos];
+}
