@@ -2,10 +2,10 @@
 #include <ctime>
 #include <random>
 
-// 1. Seed the generator using the system's hardware entropy source
+// seed the generator using the system's hardware entropy source
 std::random_device rd; 
 
-// 2. Initialize the engine with the seed
+// initialize the engine with the seed
 std::mt19937 gen(rd()); 
 
 using namespace Hangman;

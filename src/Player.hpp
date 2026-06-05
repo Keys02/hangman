@@ -3,5 +3,6 @@ namespace hangman {
             int incorrectGuesses = 0;
         public:
             int getIncorrectGuesses() const;
+            void setIncorrectGuesses();
     };
 }
