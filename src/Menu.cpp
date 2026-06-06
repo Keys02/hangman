@@ -47,6 +47,11 @@ int Menu::show() {
         case 3:
             return 3;
         default:
-            std::cerr << "Invalid choice. Try again\n\n"
+            std::cout << "\nInvalid choice. Try again!!\n";
+            Menu::show();
     }
+}
+
+int main() {
+    Menu::show();
 }
