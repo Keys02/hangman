@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string_view>
 #include "Menu.hpp"
 
 using namespace Hangman;
@@ -27,6 +26,27 @@ void Menu::showRules() {
     std::cin.get();
 }
 
-int main() {
-    Menu::showRules();
+int Menu::show() {
+    printTitle();
+
+    std::cout << "\n";
+    std::cout << "1. Start Game\n";
+    std::cout << "2. Rules\n";
+    std::cout << "3. Quit\n";
+    std::cout << "\nChoose an option: ";
+
+    int choice;
+    std::cin >> choice;
+
+    switch(choice) {
+        case 1:
+            return 1;
+        case 2:
+            showRules();
+            break;
+        case 3:
+            return 3;
+        default:
+            std::cerr << "Invalid choice. Try again\n\n"
+    }
 }
