@@ -1,3 +1,4 @@
+#pragma once
 namespace hangman {
     class Player {
             int incorrectGuesses = 0;

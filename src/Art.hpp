@@ -1,4 +1,5 @@
 #include <string_view>
+#pragma once
 #include <array>
 
 namespace Hangman {
