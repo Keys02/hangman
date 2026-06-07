@@ -24,7 +24,6 @@ void Menu::showRules() {
     std::cout << "Press Enter to return to main menu\n";
     std::cin.ignore();
     std::cin.get();
-    Menu::showMainMenu();
 }
 
 int Menu::showMainMenu() {
@@ -44,11 +43,11 @@ int Menu::showMainMenu() {
             return 1;
         case 2:
             showRules();
-            break;
+            return Menu::showMainMenu();
         case 3:
             return 3;
         default:
             std::cout << "\nInvalid choice. Try again!!\n";
-            Menu::showMainMenu();
+            return Menu::showMainMenu();
     }
 }
