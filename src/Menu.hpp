@@ -4,7 +4,7 @@
 namespace Hangman {
     class Menu {
         public:
-            static int showMainMenu();
+            static std::size_t showMainMenu();
             static void showHiddenWord(std::size_t word_length);
         private:
             static void printTitle();

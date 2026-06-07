@@ -2,7 +2,7 @@
 
 using namespace hangman;
 
-int Player::getIncorrectGuesses() const {
+std::size_t Player::getIncorrectGuesses() const {
     return Player::incorrectGuesses;
 }
 

@@ -1,9 +1,10 @@
 #pragma once
+#include <cstddef>
 namespace hangman {
     class Player {
-            int incorrectGuesses = 0;
+            std::size_t incorrectGuesses = 0;
         public:
-            int getIncorrectGuesses() const;
+            std::size_t getIncorrectGuesses() const;
             void setIncorrectGuesses();
     };
 }

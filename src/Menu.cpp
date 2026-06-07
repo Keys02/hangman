@@ -27,7 +27,7 @@ void Menu::showRules() {
     std::cin.get();
 }
 
-int Menu::showMainMenu() {
+std::size_t Menu::showMainMenu() {
     printTitle();
 
     std::cout << "\n";
