@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Menu.hpp"
+#include "Art.hpp"
 
 using namespace Hangman;
 
@@ -50,4 +51,14 @@ int Menu::showMainMenu() {
             std::cout << "\nInvalid choice. Try again!!\n";
             return Menu::showMainMenu();
     }
+}
+
+void Menu::showHiddenWord(std::size_t word_length) {
+    std::cout << '\n';
+    std::cout << "Guess the word\n";
+    std::cout << getArts(0) << '\n';
+    for (std::size_t i = 1; i <= word_length; i++) {
+        std::cout << "_ ";
+    }
+    std::cout << '\n';
 }

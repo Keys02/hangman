@@ -6,6 +6,6 @@ namespace Hangman {
         static std::vector<std::string> words;
 
         public:
-            std::string generateWord();
+            static std::string generateWord();
     };
 }

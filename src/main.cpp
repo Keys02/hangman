@@ -8,8 +8,8 @@ int main() {
     int gameStatus = Menu::showMainMenu();
 
     if (gameStatus == 1) {
-        WordGenerator word_generator; 
-        std::cout << word_generator.generateWord() << '\n';
+        std::size_t word_length = WordGenerator::generateWord().length();
+        Menu::showHiddenWord(word_length);
     }
     return 0;
 }
