@@ -3,8 +3,8 @@
 namespace Hangman {
     class Menu {
         public:
-            static int show();
-        // private:
+            static int showMainMenu();
+        private:
             static void printTitle();
             static void showRules();
     };

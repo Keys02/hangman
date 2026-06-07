@@ -17,16 +17,17 @@ void Menu::printTitle() {
 void Menu::showRules() {
     std::cout << "\n --- RULES ---\n";
     std::cout << "1. Guess the hidden word.\n";
-    std::cout << "2. Each wrong guess adds a part to the hangman.";
-    std::cout << "3. You lose after 6 mistakes.";
-    std::cout << "Goood luck!!! \n\n";
+    std::cout << "2. Each wrong guess adds a part to the hangman.\n";
+    std::cout << "3. You lose after 6 mistakes.\n";
+    std::cout << "Good luck!!! \n\n";
     
-    std::cout << "Press Enter to continue...";
+    std::cout << "Press Enter to return to main menu\n";
     std::cin.ignore();
     std::cin.get();
+    Menu::showMainMenu();
 }
 
-int Menu::show() {
+int Menu::showMainMenu() {
     printTitle();
 
     std::cout << "\n";
@@ -48,10 +49,6 @@ int Menu::show() {
             return 3;
         default:
             std::cout << "\nInvalid choice. Try again!!\n";
-            Menu::show();
+            Menu::showMainMenu();
     }
-}
-
-int main() {
-    Menu::show();
 }
