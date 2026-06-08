@@ -2,6 +2,7 @@
 #include "Menu.hpp"
 #include "Art.hpp"
 #include "Player.cpp"
+#include "WordGenerator.cpp"
 
 using namespace Hangman;
 
@@ -60,12 +61,13 @@ char Menu::wordLettersGuessInput() {
     return guess_char;
 }
 
-void Menu::showHiddenWord(std::size_t word_length) {
+void Menu::showHiddenWord() {
     Player player_one;
+    std::string generated_word = WordGenerator::generateWord();
     std::cout << '\n';
     std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
     std::cout << "Guess the letters in the word\n\n";
-    for (std::size_t i = 1; i <= word_length; i++) {
+    for (std::size_t i = 1; i <= generated_word.length(); ++i) {
         std::cout << "_ ";
     }
     std::cout << "\n\n";
