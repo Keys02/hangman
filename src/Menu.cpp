@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Menu.hpp"
 #include "Art.hpp"
+#include "Player.cpp"
 
 using namespace Hangman;
 
@@ -53,12 +54,20 @@ std::size_t Menu::showMainMenu() {
     }
 }
 
+char Menu::wordLettersGuessInput() {
+    char guess_char = 0;
+    std::cin >> guess_char;
+    return guess_char;
+}
+
 void Menu::showHiddenWord(std::size_t word_length) {
+    Player player_one;
     std::cout << '\n';
-    std::cout << "Guess the word\n";
-    std::cout << getArts(0) << '\n';
+    std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
+    std::cout << "Guess the letters in the word\n\n";
     for (std::size_t i = 1; i <= word_length; i++) {
         std::cout << "_ ";
     }
-    std::cout << '\n';
+    std::cout << "\n\n";
+    char letter = Menu::wordLettersGuessInput();
 }

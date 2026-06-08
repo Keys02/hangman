@@ -5,7 +5,7 @@
 using namespace Hangman;
 
 int main() {
-    int gameStatus = Menu::showMainMenu();
+    std::size_t gameStatus = Menu::showMainMenu();
 
     if (gameStatus == 1) {
         std::size_t word_length = WordGenerator::generateWord().length();

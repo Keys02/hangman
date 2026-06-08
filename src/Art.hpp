@@ -74,9 +74,8 @@ namespace Hangman {
     )#"
     };
 
-    inline std::string_view getArts(int mistakes) {
-        if (mistakes < 0) mistakes = 0;
-        if (mistakes > 6)  mistakes = 6;
-        return arts[mistakes];
+    inline std::string_view getArts(std::size_t incorrectGuesses) {
+        if (incorrectGuesses > 6)  incorrectGuesses = 6;
+        return arts[incorrectGuesses];
     }
 }
