@@ -78,7 +78,6 @@ void Menu::showHiddenWord() {
         bool found_one_letter = false;
 
         for (char& lettr : generated_word) {
-            std::cout << "Incorrect Guesses" << player_one.getIncorrectGuesses() << '\n';
             std::cout << lettr << '\n';
             if (lettr == letter) {
                 word_guess_status += lettr;
@@ -88,7 +87,7 @@ void Menu::showHiddenWord() {
             }
         }
 
-        if (found_one_letter) {
+        if (!found_one_letter) {
             player_one.incrIncorrectGuesses();
         }
 
