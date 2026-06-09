@@ -66,6 +66,11 @@ void Menu::showHiddenWord() {
     std::string generated_word = WordGenerator::generateWord();
 
     while (player_one.getIncorrectGuesses() <= 6) {
+        if (player_one.getIncorrectGuesses() == 6) {
+            std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
+            break;
+        }
+
         std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
         std::cout << "Guess the letters in the word\n\n";
         for (std::size_t i = 1; i <= generated_word.length(); ++i) {
