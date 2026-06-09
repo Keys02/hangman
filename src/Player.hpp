@@ -4,7 +4,7 @@ namespace Hangman {
     class Player {
         public:
             std::size_t getIncorrectGuesses() const;
-            void setIncorrectGuesses();
+            void incrIncorrectGuesses();
         private:
             std::size_t incorrectGuesses = 0;
     };

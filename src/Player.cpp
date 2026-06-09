@@ -3,9 +3,9 @@
 using namespace Hangman;
 
 std::size_t Player::getIncorrectGuesses() const {
-    return Player::incorrectGuesses;
+    return incorrectGuesses;
 }
 
-void Player::setIncorrectGuesses() {
-    Player::incorrectGuesses++;
+void Player::incrIncorrectGuesses() {
+    incorrectGuesses++;
 }

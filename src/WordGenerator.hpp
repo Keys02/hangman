@@ -3,9 +3,10 @@
 
 namespace Hangman {
     class WordGenerator {
-        static std::vector<std::string> words;
-
         public:
             static std::string generateWord();
+
+        private:
+            static std::vector<std::string> words;
     };
 }

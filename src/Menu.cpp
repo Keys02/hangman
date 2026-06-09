@@ -64,12 +64,34 @@ char Menu::wordLettersGuessInput() {
 void Menu::showHiddenWord() {
     Player player_one;
     std::string generated_word = WordGenerator::generateWord();
-    std::cout << '\n';
-    std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
-    std::cout << "Guess the letters in the word\n\n";
-    for (std::size_t i = 1; i <= generated_word.length(); ++i) {
-        std::cout << "_ ";
+
+    while (player_one.getIncorrectGuesses() < 6) {
+        std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
+        std::cout << "Guess the letters in the word\n\n";
+        for (std::size_t i = 1; i <= generated_word.length(); ++i) {
+            std::cout << "_ ";
+        }
+        std::cout << "\n\n";
+        char letter = Menu::wordLettersGuessInput();
+        
+        std::string word_guess_status = "";
+        bool found_one_letter = false;
+
+        for (char& lettr : generated_word) {
+            std::cout << "Incorrect Guesses" << player_one.getIncorrectGuesses() << '\n';
+            std::cout << lettr << '\n';
+            if (lettr == letter) {
+                word_guess_status += lettr;
+                found_one_letter = true;
+            } else {
+                word_guess_status += "_ ";
+            }
+        }
+
+        if (found_one_letter) {
+            player_one.incrIncorrectGuesses();
+        }
+
+        std::cout << word_guess_status << '\n';
     }
-    std::cout << "\n\n";
-    char letter = Menu::wordLettersGuessInput();
 }
