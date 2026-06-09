@@ -65,7 +65,7 @@ void Menu::showHiddenWord() {
     Player player_one;
     std::string generated_word = WordGenerator::generateWord();
 
-    while (player_one.getIncorrectGuesses() < 6) {
+    while (player_one.getIncorrectGuesses() <= 6) {
         std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
         std::cout << "Guess the letters in the word\n\n";
         for (std::size_t i = 1; i <= generated_word.length(); ++i) {
@@ -78,9 +78,9 @@ void Menu::showHiddenWord() {
         bool found_one_letter = false;
 
         for (char& lettr : generated_word) {
-            std::cout << lettr << '\n';
             if (lettr == letter) {
                 word_guess_status += lettr;
+                word_guess_status += " ";
                 found_one_letter = true;
             } else {
                 word_guess_status += "_ ";
