@@ -13,3 +13,7 @@ void Player::incrIncorrectGuesses() {
 void Player::addCorrectLetterGuessed(char letter) {
    guessedCorrectLetters.push_back(letter);
 }
+
+std::vector<char> Player::getAllCorrectGuessedLetters() {
+    return guessedCorrectLetters;
+}
