@@ -9,3 +9,7 @@ std::size_t Player::getIncorrectGuesses() const {
 void Player::incrIncorrectGuesses() {
     incorrectGuesses++;
 }
+
+void Player::addCorrectLetterGuessed(char letter) {
+   guessedCorrectLetters.push_back(letter);
+}
