@@ -62,10 +62,16 @@ char Menu::wordLettersGuessInput() {
 }
 
 void Menu::showHiddenWord() {
+    //===============================================
+    //                Gameplay Logic
+    //===============================================
     Player player_one;
     std::string generated_word = WordGenerator::generateWord();
 
+    std::cout << "\n\n";
+
     while (player_one.getIncorrectGuesses() <= 6) {
+        // game over after six incorrect guesses
         if (player_one.getIncorrectGuesses() == 6) {
             std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
             break;
@@ -73,29 +79,55 @@ void Menu::showHiddenWord() {
 
         std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
         std::cout << "Guess the letters in the word\n\n";
-        for (std::size_t i = 1; i <= generated_word.length(); ++i) {
-            std::cout << "_ ";
-        }
-        std::cout << "\n\n";
-        char letter = Menu::wordLettersGuessInput();
-        
-        std::string word_guess_status = "";
-        bool found_one_letter = false;
 
-        for (char& lettr : generated_word) {
-            if (lettr == letter) {
-                word_guess_status += lettr;
-                word_guess_status += " ";
-                found_one_letter = true;
-            } else {
+        std::string word_guess_status = "";
+
+        if (player_one.getAllCorrectGuessedLetters().empty()) {
+            for (std::size_t i = 1; i <= generated_word.length(); ++i) {
                 word_guess_status += "_ ";
             }
+        } else {
+            // Re-render word status
+            for (const char& correct_guessed_letter : player_one.getAllCorrectGuessedLetters()) {
+                bool letter_found = false;
+                // std::cout << correct_guessed_letter;
+
+                for (const char& word_letter : generated_word) {
+                    if (correct_guessed_letter == word_letter) {
+                        // std::cout << "Matched" << '\n';
+                        word_guess_status += correct_guessed_letter;
+                        word_guess_status += " ";
+                        letter_found = true;
+                    }
+                }
+
+                if (letter_found) {
+                word_guess_status += "_ ";
+                }
+            } 
+
+        }
+
+        std::cout << word_guess_status << '\n';
+            
+        char letter = Menu::wordLettersGuessInput();
+        
+        bool found_one_letter = false;
+
+        for (const char& lettr : generated_word) {
+            if (lettr == letter) {
+                // word_guess_status += lettr;
+                // word_guess_status += " ";
+                found_one_letter = true;
+                player_one.addCorrectLetterGuessed(letter);
+            } 
+            // else {
+            //     word_guess_status += "_ ";
+            // }
         }
 
         if (!found_one_letter) {
             player_one.incrIncorrectGuesses();
         }
-
-        std::cout << word_guess_status << '\n';
     }
 }
