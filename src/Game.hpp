@@ -2,10 +2,10 @@
 #include <cstddef>
 
 namespace Hangman {
-    class Menu {
+    class Game {
         public:
             static std::size_t showMainMenu();
-            static void showHiddenWord();
+            static void startGame();
             static char wordLettersGuessInput();
         private:
             static void printTitle();

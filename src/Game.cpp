@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Menu.hpp"
+#include "Game.hpp"
 #include "Art.hpp"
 #include "Player.cpp"
 #include "WordGenerator.cpp"
@@ -7,7 +7,7 @@
 
 using namespace Hangman;
 
-void Menu::printTitle() {
+void Game::printTitle() {
     std::cout << R"(
  _   _                                         
 | | | | __ _ _ __   __ _ _ __ ___   __ _ _ __  
@@ -18,7 +18,7 @@ void Menu::printTitle() {
     )";
 }
 
-void Menu::printGameOver() {
+void Game::printGameOver() {
     std::cout << R"(
   _____          __  __ ______    ______      ________ _____  
  / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
@@ -29,7 +29,7 @@ void Menu::printGameOver() {
     )";
 }
 
-void Menu::showRules() {
+void Game::showRules() {
     std::cout << "\n --- RULES ---\n";
     std::cout << "1. Guess the hidden word.\n";
     std::cout << "2. Each wrong guess adds a part to the hangman.\n";
@@ -41,7 +41,7 @@ void Menu::showRules() {
     std::cin.get();
 }
 
-std::size_t Menu::showMainMenu() {
+std::size_t Game::showMainMenu() {
     printTitle();
 
     std::cout << "\n";
@@ -58,29 +58,29 @@ std::size_t Menu::showMainMenu() {
             return 1;
         case 2:
             showRules();
-            return Menu::showMainMenu();
+            return Game::showMainMenu();
         case 3:
             return 3;
         default:
             std::cout << "\nInvalid choice. Try again!!\n";
-            return Menu::showMainMenu();
+            return Game::showMainMenu();
     }
 }
 
-char Menu::wordLettersGuessInput() {
+char Game::wordLettersGuessInput() {
     char guess_char = 0;
     std::cin >> guess_char;
     return guess_char;
 }
 
-void Menu::showHiddenWord() {
+void Game::startGame() {
     //===============================================
     //                Gameplay Logic
     //===============================================
     Player player_one;
     std::string generated_word = WordGenerator::generateWord();
 
-    std::cout << "\n\n";
+    std::cout << "\n";
 
     while (player_one.getIncorrectGuesses() <= 6) {
         std::string word_guess_status = "";
@@ -135,12 +135,12 @@ void Menu::showHiddenWord() {
         // check if all the letters has been guessed
         if (std::none_of(word_guess_status.begin(), word_guess_status.end(), [](char c) { return c == '_'; })) {
             std::cout << getWinningArt() << "\n";
+            std::cout << word_guess_status << "\n\n";
             std::cout << "Congratulation, you have found all the letters\n";
-            std::cout << word_guess_status << '\n';
             break;
         }
 
-        char letter = Menu::wordLettersGuessInput();
+        char letter = Game::wordLettersGuessInput();
         
         bool found_one_letter = false;
 
