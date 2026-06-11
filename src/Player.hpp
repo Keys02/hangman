@@ -1,15 +1,15 @@
 #pragma once
 #include <cstddef>
-#include <vector>
+#include <set>
 namespace Hangman {
     class Player {
         public:
             std::size_t getIncorrectGuesses() const;
             void incrIncorrectGuesses();
             void addCorrectLetterGuessed(char letter);
-            std::vector<char> getAllCorrectGuessedLetters();
+            std::set<char> getAllCorrectGuessedLetters() const;
         private:
             std::size_t incorrectGuesses = 0;
-            std::vector<char> guessedCorrectLetters;
+            std::set<char> guessedCorrectLetters;
     };
 }

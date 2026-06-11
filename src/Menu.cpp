@@ -82,33 +82,31 @@ void Menu::showHiddenWord() {
 
         std::string word_guess_status = "";
 
+        // check if no correct letter has been guessed
         if (player_one.getAllCorrectGuessedLetters().empty()) {
             for (std::size_t i = 1; i <= generated_word.length(); ++i) {
                 word_guess_status += "_ ";
             }
         } else {
-            // Re-render word status
-            for (const char& correct_guessed_letter : player_one.getAllCorrectGuessedLetters()) {
-                bool letter_found = false;
-                // std::cout << correct_guessed_letter;
-
-                for (const char& word_letter : generated_word) {
-                    if (correct_guessed_letter == word_letter) {
-                        // std::cout << "Matched" << '\n';
-                        word_guess_status += correct_guessed_letter;
-                        word_guess_status += " ";
-                        letter_found = true;
+            // re-render word status using correct letters previously guessed
+            for (const char& word_letter : generated_word) {
+                bool word_letter_found = false ;
+                
+                for (const char& correct_guessed_letter : player_one.getAllCorrectGuessedLetters()) {
+                    if (word_letter == correct_guessed_letter) {
+                        word_guess_status += word_letter;
+                        word_guess_status += ' ';
+                        word_letter_found = true;
                     }
                 }
 
-                if (letter_found) {
-                word_guess_status += "_ ";
-                }
-            } 
+                if (!word_letter_found)
+                    word_guess_status += "_ ";
+            }
 
         }
 
-        std::cout << word_guess_status << '\n';
+        std::cout << word_guess_status << "\n\n";
             
         char letter = Menu::wordLettersGuessInput();
         
@@ -116,14 +114,9 @@ void Menu::showHiddenWord() {
 
         for (const char& lettr : generated_word) {
             if (lettr == letter) {
-                // word_guess_status += lettr;
-                // word_guess_status += " ";
                 found_one_letter = true;
                 player_one.addCorrectLetterGuessed(letter);
             } 
-            // else {
-            //     word_guess_status += "_ ";
-            // }
         }
 
         if (!found_one_letter) {

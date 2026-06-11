@@ -11,9 +11,9 @@ void Player::incrIncorrectGuesses() {
 }
 
 void Player::addCorrectLetterGuessed(char letter) {
-   guessedCorrectLetters.push_back(letter);
+   guessedCorrectLetters.insert(letter);
 }
 
-std::vector<char> Player::getAllCorrectGuessedLetters() {
+std::set<char> Player::getAllCorrectGuessedLetters() const {
     return guessedCorrectLetters;
 }
