@@ -3,6 +3,7 @@
 #include "Art.hpp"
 #include "Player.cpp"
 #include "WordGenerator.cpp"
+#include "algorithm"
 
 using namespace Hangman;
 
@@ -71,6 +72,8 @@ void Menu::showHiddenWord() {
     std::cout << "\n\n";
 
     while (player_one.getIncorrectGuesses() <= 6) {
+        std::string word_guess_status = "";
+
         // game over after six incorrect guesses
         if (player_one.getIncorrectGuesses() == 6) {
             std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
@@ -80,7 +83,6 @@ void Menu::showHiddenWord() {
         std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
         std::cout << "Guess the letters in the word\n\n";
 
-        std::string word_guess_status = "";
 
         // check if no correct letter has been guessed
         if (player_one.getAllCorrectGuessedLetters().empty()) {
@@ -107,7 +109,13 @@ void Menu::showHiddenWord() {
         }
 
         std::cout << word_guess_status << "\n\n";
-            
+
+        // check if all the letters has been guessed
+        if (std::none_of(word_guess_status.begin(), word_guess_status.end(), [](char c) { return c == '_'; })) {
+            std::cout << "Congratulation, you have found all the letters \n";
+            break;
+        }
+
         char letter = Menu::wordLettersGuessInput();
         
         bool found_one_letter = false;
