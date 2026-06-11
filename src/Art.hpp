@@ -78,4 +78,16 @@ namespace Hangman {
         if (incorrectGuesses > 6)  incorrectGuesses = 6;
         return arts[incorrectGuesses];
     }
+
+    inline std::string_view getWinningArt() {
+        return R"#(
++---+
+|   |
+|   
+|   \O/
+|    |
+|   / \
+=========
+        )#";
+    }
 }

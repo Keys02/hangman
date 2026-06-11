@@ -112,6 +112,7 @@ void Menu::showHiddenWord() {
 
         // check if all the letters has been guessed
         if (std::none_of(word_guess_status.begin(), word_guess_status.end(), [](char c) { return c == '_'; })) {
+            std::cout << getWinningArt() << "\n";
             std::cout << "Congratulation, you have found all the letters \n";
             break;
         }
