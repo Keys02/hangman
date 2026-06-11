@@ -1,9 +1,9 @@
 #include <iostream>
+#include <algorithm>
 #include "Game.hpp"
 #include "Art.hpp"
 #include "Player.cpp"
 #include "WordGenerator.cpp"
-#include "algorithm"
 
 using namespace Hangman;
 
@@ -134,12 +134,13 @@ void Game::startGame() {
 
         // check if all the letters has been guessed
         if (std::none_of(word_guess_status.begin(), word_guess_status.end(), [](char c) { return c == '_'; })) {
-            std::cout << getWinningArt() << "\n";
+            std::cout << getWinningArt() << "\n"; // display winning art
             std::cout << word_guess_status << "\n\n";
             std::cout << "Congratulation, you have found all the letters\n";
             break;
         }
 
+        // take player letter input
         char letter = Game::wordLettersGuessInput();
         
         bool found_one_letter = false;
@@ -147,6 +148,7 @@ void Game::startGame() {
         for (const char& lettr : generated_word) {
             if (lettr == letter) {
                 found_one_letter = true;
+                // add correct letter to the guessed letter tracker to re-render the word status
                 player_one.addCorrectLetterGuessed(letter);
             } 
         }
