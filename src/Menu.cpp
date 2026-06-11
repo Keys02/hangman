@@ -18,6 +18,17 @@ void Menu::printTitle() {
     )";
 }
 
+void Menu::printGameOver() {
+    std::cout << R"(
+  _____          __  __ ______    ______      ________ _____  
+ / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
+| |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) |
+| | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  / 
+| |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \ 
+ \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_\
+    )";
+}
+
 void Menu::showRules() {
     std::cout << "\n --- RULES ---\n";
     std::cout << "1. Guess the hidden word.\n";
@@ -77,6 +88,17 @@ void Menu::showHiddenWord() {
         // game over after six incorrect guesses
         if (player_one.getIncorrectGuesses() == 6) {
             std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
+
+            // display the correct word after six incorrect guesses
+            for (const char& word_letter : generated_word) {
+                std::cout << word_letter << " ";
+            }
+            std::cout << "\n\n";
+
+            std::cout << "The rope was faster than your guesses" << '\n';
+            std::cout << "Better luck next time!" << '\n';
+            printGameOver();
+            std::cout << '\n';
             break;
         }
 
@@ -113,7 +135,8 @@ void Menu::showHiddenWord() {
         // check if all the letters has been guessed
         if (std::none_of(word_guess_status.begin(), word_guess_status.end(), [](char c) { return c == '_'; })) {
             std::cout << getWinningArt() << "\n";
-            std::cout << "Congratulation, you have found all the letters \n";
+            std::cout << "Congratulation, you have found all the letters\n";
+            std::cout << word_guess_status << '\n';
             break;
         }
 

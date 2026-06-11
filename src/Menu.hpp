@@ -10,5 +10,6 @@ namespace Hangman {
         private:
             static void printTitle();
             static void showRules();
+            static void printGameOver();
     };
 }
