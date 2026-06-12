@@ -5,7 +5,7 @@ namespace Hangman {
     class Game {
         public:
             static std::size_t showMainMenu();
-            static void startGame();
+            static void start();
             static char wordLettersGuessInput();
         private:
             static void printTitle();

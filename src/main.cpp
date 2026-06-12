@@ -7,7 +7,7 @@ int main() {
 
     // if start game is selected from the main menu
     if (main_menu_option == 1) {
-        Game::startGame();
+        Game::start();
     }
     return 0;
 }

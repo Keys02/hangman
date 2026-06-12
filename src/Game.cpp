@@ -73,7 +73,7 @@ char Game::wordLettersGuessInput() {
     return guess_char;
 }
 
-void Game::startGame() {
+void Game::start() {
     //===============================================
     //                Gameplay Logic
     //===============================================
