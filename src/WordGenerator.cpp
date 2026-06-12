@@ -11,8 +11,32 @@ std::mt19937 gen(rd());
 using namespace Hangman;
 
 std::vector<std::string> WordGenerator::words = {
-    "abstraction", "polymorphism", "inheritance", "encapsulation",
-    "template", "overloading", "generic"
+    "apple", "banana", "orange", "grape", "mango",
+    "watermelon", "pineapple", "strawberry", "cherry", "peach",
+
+    "mountain", "river", "ocean", "forest", "desert",
+    "island", "valley", "waterfall", "rainbow", "thunder",
+
+    "animal", "tiger", "lion", "elephant", "giraffe",
+    "zebra", "kangaroo", "dolphin", "penguin", "butterfly",
+
+    "garden", "flower", "tree", "castle", "bridge",
+    "village", "country", "city", "school", "library",
+
+    "pencil", "notebook", "computer", "telephone", "camera",
+    "mirror", "window", "blanket", "pillow", "backpack",
+
+    "music", "guitar", "piano", "violin", "drummer",
+    "artist", "painting", "theater", "dance", "singer",
+
+    "journey", "adventure", "mystery", "treasure", "diamond",
+    "freedom", "victory", "courage", "dream", "memory",
+
+    "sunshine", "moonlight", "morning", "evening", "midnight",
+    "holiday", "festival", "birthday", "friendship", "happiness",
+
+    "chocolate", "sandwich", "coffee", "cookie", "icecream",
+    "hamburger", "pancake", "noodles", "pizza", "popcorn"
 };
 
 std::string WordGenerator::generateWord() {
