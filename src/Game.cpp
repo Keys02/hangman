@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <memory>
 #include "Game.hpp"
 #include "Art.hpp"
 #include "Player.cpp"
@@ -77,17 +78,18 @@ void Game::start() {
     //===============================================
     //                Gameplay Logic
     //===============================================
-    Player player_one;
+    // Player player_one;
+    std::unique_ptr<Player> player_one = std::make_unique<Player>();
     std::string generated_word = WordGenerator::generateWord();
 
     std::cout << "\n";
 
-    while (player_one.getIncorrectGuesses() <= 6) {
+    while (player_one->getIncorrectGuesses() <= 6) {
         std::string word_guess_status = "";
 
         // game over after six incorrect guesses
-        if (player_one.getIncorrectGuesses() == 6) {
-            std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
+        if (player_one->getIncorrectGuesses() == 6) {
+            std::cout << getArts(player_one->getIncorrectGuesses()) << '\n';
 
             // display the correct word after six incorrect guesses
             for (const char& word_letter : generated_word) {
@@ -98,16 +100,25 @@ void Game::start() {
             std::cout << "The rope was faster than your guesses" << '\n';
             std::cout << "Better luck next time!" << '\n';
             printGameOver();
+            player_one.reset();
             std::cout << '\n';
-            break;
+            std::cout << "Press Enter to return to main menu\n";
+            std::cin.ignore();
+            std::cin.get();
+
+            // replay game again
+            size_t main_menu_option = Game::showMainMenu();
+            if (main_menu_option == 1) {
+                Game::start();
+            }
         }
 
-        std::cout << getArts(player_one.getIncorrectGuesses()) << '\n';
+        std::cout << getArts(player_one->getIncorrectGuesses()) << '\n';
         std::cout << "Guess the letters in the word\n\n";
 
 
         // check if no correct letter has been guessed
-        if (player_one.getAllCorrectGuessedLetters().empty()) {
+        if (player_one->getAllCorrectGuessedLetters().empty()) {
             for (std::size_t i = 1; i <= generated_word.length(); ++i) {
                 word_guess_status += "_ ";
             }
@@ -116,7 +127,7 @@ void Game::start() {
             for (const char& word_letter : generated_word) {
                 bool word_letter_found = false ;
                 
-                for (const char& correct_guessed_letter : player_one.getAllCorrectGuessedLetters()) {
+                for (const char& correct_guessed_letter : player_one->getAllCorrectGuessedLetters()) {
                     if (word_letter == correct_guessed_letter) {
                         word_guess_status += word_letter;
                         word_guess_status += ' ';
@@ -136,8 +147,17 @@ void Game::start() {
         if (std::none_of(word_guess_status.begin(), word_guess_status.end(), [](char c) { return c == '_'; })) {
             std::cout << getWinningArt() << "\n"; // display winning art
             std::cout << word_guess_status << "\n\n";
-            std::cout << "Congratulation, you have found all the letters\n";
-            break;
+            player_one.reset();
+            std::cout << "Congratulation, you have found all the letters\n\n";
+            std::cout << "Press Enter to return to main menu\n";
+            std::cin.ignore();
+            std::cin.get();
+
+            // replay game again
+            size_t main_menu_option = Game::showMainMenu();
+            if (main_menu_option == 1) {
+                Game::start();
+            }
         }
 
         // take player letter input
@@ -149,12 +169,12 @@ void Game::start() {
             if (lettr == letter) {
                 found_one_letter = true;
                 // add correct letter to the guessed letter tracker to re-render the word status
-                player_one.addCorrectLetterGuessed(letter);
+                player_one->addCorrectLetterGuessed(letter);
             } 
         }
 
         if (!found_one_letter) {
-            player_one.incrIncorrectGuesses();
+            player_one->incrIncorrectGuesses();
         }
     }
 }
