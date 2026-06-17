@@ -106,6 +106,7 @@ void Game::start() {
             std::cin.get();
 
             // replay game again
+            std::system("clear");
             size_t main_menu_option = Game::showMainMenu();
             if (main_menu_option == 1) {
                 Game::start();
@@ -153,6 +154,7 @@ void Game::start() {
             std::cin.get();
 
             // replay game again
+            std::system("clear");
             size_t main_menu_option = Game::showMainMenu();
             if (main_menu_option == 1) {
                 Game::start();
