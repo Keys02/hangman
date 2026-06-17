@@ -30,6 +30,11 @@ void Game::printGameOver() {
     )";
 }
 
+void Game::clearScreen() {
+    std::cout << "\033[2J\033[H";
+    std::cout << "\n";
+}
+
 void Game::showRules() {
     std::cout << "\n --- RULES ---\n";
     std::cout << "1. Guess the hidden word.\n";
@@ -106,7 +111,7 @@ void Game::start() {
             std::cin.get();
 
             // replay game again
-            std::system("clear");
+            Game::clearScreen();
             size_t main_menu_option = Game::showMainMenu();
             if (main_menu_option == 1) {
                 Game::start();
@@ -154,7 +159,7 @@ void Game::start() {
             std::cin.get();
 
             // replay game again
-            std::system("clear");
+            Game::clearScreen();
             size_t main_menu_option = Game::showMainMenu();
             if (main_menu_option == 1) {
                 Game::start();

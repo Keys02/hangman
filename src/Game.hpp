@@ -11,5 +11,6 @@ namespace Hangman {
             static void printTitle();
             static void showRules();
             static void printGameOver();
+            static void clearScreen();
     };
 }
