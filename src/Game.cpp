@@ -143,7 +143,6 @@ void Game::start() {
                 if (!word_letter_found)
                     word_guess_status += "_ ";
             }
-
         }
 
         std::cout << word_guess_status << "\n\n";
@@ -165,10 +164,16 @@ void Game::start() {
                 Game::start();
             }
         }
+        
+        // print the keyboard showing the keys the players has type reflecting the letters found
+        player->printKeyboard();
 
         // take player letter input
         char letter = Game::wordLettersGuessInput();
-        
+
+        // update player keyboard
+        player->updateKeyboardState(letter);
+
         bool found_one_letter = false;
 
         for (const char& lettr : generated_word) {
