@@ -2,6 +2,15 @@
 
 A game🕹️ of hangman written in C++
 
+## Screenshots
+![Main menu](screenshots/hangman_game_start.png)
+
+![Gameplay](screenshots/hangman_gameplay.png)
+
+![Game over screen](screenshots/hangman_game_over.png)
+
+![Congratulation screen](screenshots/hangman_congratulation.png)
+
 ## Concepts and design decisions
 
 ### std::string and std::string_view
